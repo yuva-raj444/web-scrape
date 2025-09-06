@@ -1,0 +1,33 @@
+/* Hide Next.js development indicators and overlays */
+[data-nextjs-dialog],
+[data-nextjs-dialog-backdrop],
+[data-nextjs-dialog-overlay],
+[data-nextjs-toast],
+[data-nextjs-errors],
+#__next-build-watcher,
+.__next-dev-overlay,
+.__next-dev-overlay-backdrop,
+.react-dev-inspector,
+[id^="__REACT_DEVTOOLS"],
+nextjs-portal {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Hide the development server indicator that appears in bottom left */
+div[style*="position: fixed"][style*="bottom: 10px"][style*="left: 10px"] {
+  display: none !important;
+}
+
+/* Hide any development overlays */
+div[style*="position: fixed"][style*="z-index: 99999"] {
+  display: none !important;
+}
+
+/* More specific selectors for Next.js dev indicators */
+[data-nextjs-error-overlay],
+[data-nextjs-build-error],
+[data-nextjs-compile-error] {
+  display: none !important;
+}
