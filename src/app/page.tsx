@@ -44,7 +44,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300">
+    <div className="min-h-screen transition-colors duration-300">
       <ThemeToggle />
       
       <header className="py-8 md:py-12 text-center border-b border-gray-100 dark:border-gray-800">
@@ -55,7 +55,7 @@ export default function Home() {
           className="max-w-7xl mx-auto px-4"
         >
           <h1 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-3">
-            Enterprise Data Aggregator
+            Just Scrape Me
           </h1>
           <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-base">
             Real-time aggregation from multiple trusted sources across various categories
@@ -87,17 +87,7 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex flex-col items-center justify-center mt-12 space-y-6 text-center px-4"
           >
-            <div className="w-40 h-40 relative opacity-60">
-              <Image 
-                src="/globe.svg" 
-                alt="Search Illustration" 
-                fill
-                className="dark:invert"
-                onClick={(e) => e.preventDefault()}
-                priority
-                unoptimized
-              />
-            </div>
+            {/* search illustration removed */}
             <h2 className="text-xl font-medium text-gray-800 dark:text-gray-200">
               Comprehensive data from industry-leading sources
             </h2>
@@ -107,14 +97,16 @@ export default function Home() {
               <div className="text-gray-600 dark:text-gray-300 text-sm font-medium">IMDb</div>
               <div className="text-gray-600 dark:text-gray-300 text-sm font-medium">Goodreads</div>
               <div className="text-gray-600 dark:text-gray-300 text-sm font-medium">LinkedIn</div>
-              <div className="text-gray-600 dark:text-gray-300 text-sm font-medium">And many more...</div>
+              <div className="text-gray-600 dark:text-gray-300 text-sm font-medium">Rotten Tomatoes</div>
+              <div className="text-gray-600 dark:text-gray-300 text-sm font-medium"> themoviedb</div>
+              <div className="text-gray-600 dark:text-gray-300 text-sm font-medium">Goodreads</div>
             </div>
           </motion.div>
         )}
       </main>
 
       <footer className="py-6 border-t border-gray-100 dark:border-gray-800 text-center text-gray-500 dark:text-gray-400 text-sm max-w-7xl mx-auto">
-        <p>© {new Date().getFullYear()} Enterprise Data Aggregator. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Just Scrape Me. All rights reserved.</p>
       </footer>
     </div>
   );
