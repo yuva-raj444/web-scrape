@@ -1,5 +1,5 @@
 import { BaseScraper } from './baseScraper';
-import { ScraperResponse } from '../types';
+import { ScraperResponse, SearchResult } from '../types';
 import puppeteer from 'puppeteer';
 
 export class AmazonScraper extends BaseScraper {
@@ -16,7 +16,7 @@ export class AmazonScraper extends BaseScraper {
       const html = await this.fetchWithPuppeteer(this.url);
       const $ = this.createCheerio(html);
       
-      const results: any[] = [];
+      const results: SearchResult[] = [];
       
       // Find all product containers, using multiple possible selectors
       const productElements = [

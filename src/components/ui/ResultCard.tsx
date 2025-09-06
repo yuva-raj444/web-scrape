@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { SearchResult } from '@/lib/types';
-import { ExternalLink, Star, MapPin, Calendar, Briefcase, DollarSign, IndianRupee } from 'lucide-react';
+import { ExternalLink, Star, MapPin, Calendar, Briefcase, IndianRupee } from 'lucide-react';
 
 interface ResultCardProps {
   result: SearchResult;

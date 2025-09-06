@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { SearchForm } from '@/components/ui/SearchForm';
 import { ResultsGrid } from '@/components/ui/ResultsGrid';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
@@ -35,7 +34,7 @@ export default function Home() {
       const data = await response.json();
       setResults(data.results);
       setHasSearched(true);
-    } catch (err) {
+    } catch {
       setError('An error occurred while fetching results. Please try again.');
       setResults([]);
     } finally {

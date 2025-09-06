@@ -71,13 +71,15 @@ export class LinkedInScraper extends BaseScraper {
       });
       
       // Pass chrome checks
-      (window as any).chrome = {
+      // @ts-expect-error - Adding chrome object to window for bot detection
+      window.chrome = {
         runtime: {},
       };
       
       // Pass notifications checks
       const originalQuery = window.navigator.permissions.query;
-      (window.navigator.permissions.query as any) = (parameters: any) => (
+      // @ts-expect-error - Overriding permissions query for bot detection
+      window.navigator.permissions.query = (parameters) => (
         parameters.name === 'notifications' ?
           Promise.resolve({ state: Notification.permission }) :
           originalQuery(parameters)

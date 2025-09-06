@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import puppeteer from 'puppeteer';
-import { ScraperResponse, SearchResult } from '../types';
+import { ScraperResponse } from '../types';
 
 export abstract class BaseScraper {
   protected abstract source: string;
@@ -54,7 +54,7 @@ export abstract class BaseScraper {
         });
         
         // Pass chrome checks
-        // @ts-ignore
+        // @ts-expect-error - Adding chrome object to window for bot detection
         window.chrome = {
           runtime: {},
           // etc.
@@ -62,7 +62,7 @@ export abstract class BaseScraper {
         
         // Pass notifications checks
         const originalQuery = window.navigator.permissions.query;
-        // @ts-ignore
+        // @ts-expect-error - Overriding permissions query for bot detection
         window.navigator.permissions.query = (parameters) => (
           parameters.name === 'notifications' ?
             Promise.resolve({ state: Notification.permission }) :
