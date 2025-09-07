@@ -28,16 +28,16 @@ export abstract class BaseScraper {
   protected async fetchWithPuppeteer(url: string): Promise<string> {
     let browser;
     try {
-      const launchOptions: any = {
+      browser = await puppeteer.launch({
         headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
-      };
-
-      if (process.env.PUPPETEER_EXECUTABLE_PATH) {
-        launchOptions.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
-      }
-
-      browser = await puppeteer.launch(launchOptions);
+        args: [
+          '--no-sandbox', 
+          '--disable-setuid-sandbox',
+          '--disable-web-security',
+          '--disable-features=IsolateOrigins,site-per-process',
+          '--disable-blink-features=AutomationControlled'
+        ]
+      });
       const page = await browser.newPage();
       
       // Set a more realistic user agent
