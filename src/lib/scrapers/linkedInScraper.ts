@@ -40,7 +40,7 @@ export class LinkedInScraper extends BaseScraper {
   private async scrapeLinkedInJobs(jobRole: string, location: string) {
     const url = `https://www.linkedin.com/jobs/${encodeURIComponent(jobRole)}-jobs-${encodeURIComponent(location)}?position=1&pageNum=0`;
 
-    const browser = await puppeteer.launch({ 
+    const launchOptions: any = {
       headless: true,
       args: [
         '--no-sandbox', 
@@ -52,7 +52,13 @@ export class LinkedInScraper extends BaseScraper {
         '--no-first-run',
         '--disable-extensions'
       ]
-    });
+    };
+
+    if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+      launchOptions.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
+    }
+
+    const browser = await puppeteer.launch(launchOptions);
     const page = await browser.newPage();
 
     // Enhanced stealth configuration

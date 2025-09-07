@@ -111,16 +111,22 @@ export class FlipkartScraper extends BaseScraper {
 
   // Direct implementation from testme.js
   private async scrapeFlipkart(query: string): Promise<Array<{title: string, price: string, link: string, image: string}>> {
-    const browser = await puppeteer.launch({ 
-      headless: true,
-      args: [
-        '--no-sandbox', 
-        '--disable-setuid-sandbox',
-        '--disable-web-security',
-        '--disable-features=IsolateOrigins,site-per-process',
-        '--disable-blink-features=AutomationControlled'
-      ]
-    });
+  const launchOptions: any = {
+          headless: true,
+          args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-web-security',
+            '--disable-features=IsolateOrigins,site-per-process',
+            '--disable-blink-features=AutomationControlled'
+          ]
+        };
+
+        if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+          launchOptions.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
+        }
+
+        const browser = await puppeteer.launch(launchOptions);
     const page = await browser.newPage();
 
     // Set user-agent to avoid bot detection
